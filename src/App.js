@@ -1,10 +1,21 @@
 import './App.css';
+import Header from './Header';
+import Nav from './Nav'
+import Main from './Main'
+import Footer from './Footer'
+import {LinkProvider} from './context/navContext'
+
 
 function App() {
   return (
-    <div className="App">
-      Homepage
-    </div>
+    <LinkProvider>
+      <>
+        <Nav/>
+        <Header/>
+        <Main/>
+        <Footer/>
+      </>
+    </LinkProvider>
   );
 }
 
