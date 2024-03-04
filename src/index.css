@@ -1,8 +1,7 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Karla';
+  font-size: 16pt;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +9,88 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+img {
+  border-radius: 16px;
+}
+
+h1, h2 {
+  font-size: 40pt;
+  font-weight: medium;
+  font-family: 'Markazi Text';
+}
+h2, h3, h4, h5, h6 {
+  font-size: 65;
+  font-weight: medium;
+  font-family: 'Markazi Text';
+}
+
+p, span {
+  font-weight: normal;
+  font-size: 16pt;
+  color: rgb(73,94,87);
+  line-height: 1.5;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  padding: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+}
+
+.gridParent {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.segment {
+  display: grid;
+  place-items: left;
+  text-align: left;
+}
+
+.footer1 {
+  width: 100%;
+  height: 100%;
+  grid-column: 3/ span 2;
+}
+
+.footer2{
+  grid-column: 5/ span 2;
+
+}
+
+.footer3{
+  grid-column: 7/ span 2;
+
+}
+
+.footer4{
+  grid-column: 9/ span 3;
+
+}
+
+.nav1 {
+  grid-column: 3/ span 2;
+  width: 70%;
+  height: 100%;
+  align-items: center;
+}
+
+.nav2 {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  grid-column: 5/ span 6;
 }

@@ -33,33 +33,33 @@ export default function Footer(){
     ];
 
     return (
-     <>
-        <img src={logo} alt="LogoFooter" />
-        <div>
+     <footer class="gridParent">
+        <img src={logo} alt="LogoFooter" class="segment footer1"/>
+        <nav class="segment footer2">
             <h3>Doormat Navigation</h3>
             <ul>
                 {links.map((link) => (
                     <li><a key={link.Name} href={link.URL}>{link.Name}</a></li>
                 ))}
             </ul>
-        </div>
-        <div>
+        </nav>
+        <nav class="segment footer3">
             <h3>Contact</h3>
             <ul>
                 {contactLinks.map((link) => (
                     <li><a key={link.Name} href={link.URL}>{link.Name}</a></li>
                 ))}
             </ul>
-        </div>
-        <div>
+        </nav>
+        <nav class="segment footer4">
             <h3>Social Media Links</h3>
             <ul>
                 {socialMediaLinks.map((link) => (
                     <li><a key={link.Name} href={link.URL}>{link.Name}</a></li>
                 ))}
             </ul>
-        </div>
-     </>
+        </nav>
+     </footer>
     )
 }
 
