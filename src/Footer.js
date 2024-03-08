@@ -1,5 +1,7 @@
-import logo from './icons_assets/lemon dessert.jpg'
+import logo from './icons_assets/Logo.svg'
 import { useLinks } from './context/navContext'
+import { Link } from 'react-router-dom';
+import React from 'react';
 
 export default function Footer(){
     const links = useLinks();
@@ -32,31 +34,29 @@ export default function Footer(){
         }
     ];
 
+    const generateLink = (link) => (
+        <li><Link key={link.Name} to={link.URL}>{link.Name}</Link></li>
+    )
+
     return (
-     <footer class="gridParent">
-        <img src={logo} alt="LogoFooter" class="segment footer1"/>
-        <nav class="segment footer2">
+     <footer className="gridParent">
+        <img src={logo} alt="LogoFooter" className="segment footer1"/>
+        <nav className="segment footer2">
             <h3>Doormat Navigation</h3>
             <ul>
-                {links.map((link) => (
-                    <li><a key={link.Name} href={link.URL}>{link.Name}</a></li>
-                ))}
+                {links.map(generateLink)}
             </ul>
         </nav>
-        <nav class="segment footer3">
+        <nav className="segment footer3">
             <h3>Contact</h3>
             <ul>
-                {contactLinks.map((link) => (
-                    <li><a key={link.Name} href={link.URL}>{link.Name}</a></li>
-                ))}
+                {contactLinks.map(generateLink)}
             </ul>
         </nav>
-        <nav class="segment footer4">
+        <nav className="segment footer4">
             <h3>Social Media Links</h3>
             <ul>
-                {socialMediaLinks.map((link) => (
-                    <li><a key={link.Name} href={link.URL}>{link.Name}</a></li>
-                ))}
+                {socialMediaLinks.map(generateLink)}
             </ul>
         </nav>
      </footer>

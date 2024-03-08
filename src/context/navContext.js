@@ -1,4 +1,4 @@
-import {createContext, useContext} from "react";
+import React, { createContext, useContext} from "react";
 
 const NavContext = createContext(undefined);
 
@@ -7,7 +7,7 @@ export const LinkProvider = ({ children }) => {
   const links =  [
     {
         Name: "Home",
-        URL: "/home"
+        URL: "/"
     },
     {
         Name: "About",
