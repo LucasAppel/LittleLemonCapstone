@@ -25,6 +25,7 @@ h1, h2 {
   font-weight: medium;
   font-family: 'Markazi Text';
   margin: 0;
+  z-index: 5;
 }
 h2 {
   font-size: 25pt;
@@ -40,6 +41,14 @@ p, span {
   font-weight: normal;
   font-size: 12pt;
   line-height: 1.5;
+  font-family: "Karla";
+}
+
+label {
+  font-weight: bold;
+  font-size: 14pt;
+  line-height: 1.5;
+  font-family: "Karla";
 }
 
 nav ul {
@@ -142,6 +151,7 @@ nav a {
   color: black;
   min-width: min-content;
   display: inline-block;
+  cursor: pointer;
 }
 
 .ellipsis{
@@ -149,4 +159,21 @@ nav a {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;  
+}
+
+.fullWidth {
+  width: 100%;
+  grid-column: 3/ span 9;
+}
+
+form {
+  width: 100%;
+}
+
+input, select {
+  border-radius: 16px;
+  padding: 2px 20px 2px 20px;
+  border: none;
+  box-shadow: none;
+
 }

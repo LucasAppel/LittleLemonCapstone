@@ -19,7 +19,7 @@ export const LinkProvider = ({ children }) => {
     },
     {
         Name: "Reservations",
-        URL: "/reservations"
+        URL: "/booking"
     },
     {
         Name: "Order Online",

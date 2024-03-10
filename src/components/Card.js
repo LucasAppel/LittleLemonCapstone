@@ -1,7 +1,7 @@
 // @ts-ignore
 import { Box, Image, Text, VStack } from "@chakra-ui/react";
 import React from "react";
-import deliverIcon from "../icons_assets/Basket.svg"
+import deliverIcon from '../icons_assets/Basket.svg'
 
 
 const Card = ({ title, price, description, imageSrc }) => {
@@ -11,7 +11,7 @@ const Card = ({ title, price, description, imageSrc }) => {
         <VStack spacing={2} pl={15} pr={15} align="left">
         <Box display="inline-flex" alignItems="center" justifyContent="space-between"><h3>{title}</h3> <Text fontWeight="bold" color="rgb(238,153,114)">$ {price}</Text></Box>
         <p>{description}</p>
-        <Box display="inline-flex" alignItems="center"><Text fontWeight="bold">Order a delivery</Text><Image src={deliverIcon} boxSize="20px" pl={10} alt="deliveryIcon"/></Box>
+        <Box display="inline-flex" alignItems="center"><Text fontWeight="bold">Order a delivery</Text><Image src={deliverIcon} boxSize="20px" w={20}  alt="deliveryIcon"></Image></Box>
         </VStack>
       </Box>
   )
