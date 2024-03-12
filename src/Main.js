@@ -1,32 +1,29 @@
 import { Route, Routes } from 'react-router-dom'
 import HomePage from './components/Homepage'
 import BookingPage from './components/BookingPage'
-import React, { useState, useReducer } from 'react'
-
+import React, { useState, useReducer, useEffect } from 'react'
+import { fetchAPI, submitAPI } from 'restaurantAPI';
 
 export default function Main(){
 
+    const today = new Date();
     // State
-    const [date, setDate] = useState("");
+    const [date, setDate] = useState(new Date(today.getFullYear(), today.getMonth(), today.getDate()+1).toJSON().split('T')[0]);
     const [time, setTime] = useState("");
     const [guestCount, setGuestCount] = useState(0);
     const [occasion, setOccasion] = useState("");
 
 
-    const initializeTimes = () => ([
-        "17:00",
-        "18:00",
-        "19:00",
-        "20:00",
-        "21:00",
-        "22:00"
-    ]);
+
+
+    const initializeTimes = () => ([]);
 
     const updateTimes = (state, action) => {
         // action.date to be used?
         switch(action.type){
             case 'change_date':
-                return initializeTimes();
+                state = action.times;
+                return state;
             case 'remove_time_available':
                 return initializeTimes();
             default:
@@ -40,6 +37,11 @@ export default function Main(){
         alert('Reservation received!');
         e.preventDefault();
     }
+    useEffect(()=>{
+        fetchAPI(date)
+            // @ts-ignore
+            .then((resp) => {setAvailableTimes({type: 'change_date', times: resp})})
+    }, [date])
 
 const bookingProps = {date, setDate, time, setTime, guestCount, setGuestCount, occasion, setOccasion, availableTimes, setAvailableTimes, submitHandler};
 
