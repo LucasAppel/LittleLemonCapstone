@@ -1,13 +1,14 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import BookingForm from '../components/BookingForm';
-import React, { useState } from "react";
-import { submitHandler } from "Main";
+import React from "react";
 
-const bookingProps = {date: "", setDate: () => (null),
-        time: "", setTime: () => (null),
-        guestCount: 0, setGuestCount: () => (null),
-        occasion: "", setOccasion: () => (null),
-        availableTimes: [], setAvailableTimes: () => (null),
+
+const bookingProps = {
+        date: "", setDate: () => (""),
+        time: "", setTime: () => (""),
+        guestCount: 0, setGuestCount: () => (""),
+        occasion: "", setOccasion: () => (""),
+        availableTimes: [], setAvailableTimes: () => (""),
         submitHandler: jest.fn()
     };
 

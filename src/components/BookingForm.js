@@ -12,7 +12,7 @@ export default function BookingForm(props){
                 <br/>
                 <label htmlFor="res-time">Choose time</label>
                 <select id="res-time"  value={time} onChange={e => setTime(e.target.value)}>
-                    {availableTimes.map((time) => <option>{time}</option>)}
+                    {availableTimes.map((time) => <option key={time}>{time}</option>)}
                 </select>
                 <br/>
                 <label htmlFor="guests">Number of guests</label>

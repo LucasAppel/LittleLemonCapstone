@@ -11,11 +11,11 @@ const CardSmall = ({ name, rating, review, imageSrc }) => {
       <Box bg="rgb(237,239,238)" pt={7} pb={5} pl={4} pr={4} color="black" fontSize="sm" fontWeight="medium" boxSize ='xxxs' w="300px">        
         <VStack spacing={2} pl={15} pr={15} align="left">
         <Box pb={3} display="inline-flex" alignItems="center" justifyContent="flex-start" gap="8px"> 
-          {[...Array(maxRating)].map(()=>(
-            <Image src={fullStar} alt="rating start full" />
+          {[...Array(maxRating)].map((_, id)=>(
+            <Image key={id} src={fullStar} alt="rating start full" />
           ))}
-          {[...Array(5-maxRating)].map(()=>(
-            <Image src={emptyStar} alt="rating start empty" />
+          {[...Array(5-maxRating)].map((_, id)=>(
+            <Image key={id} src={emptyStar} alt="rating start empty" />
           ))}
         </Box>
         <Box  display="inline-flex" alignItems="center" justifyContent="flex-start" gap="20px"> <Avatar size="md" name={name} src={imageSrc}></Avatar><h3>{name}</h3></Box>
