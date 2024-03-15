@@ -54,7 +54,7 @@ export default function BookingForm(props) {
             let timeError = { ...errors };
     
             if (time === "-- Sorry, Booked out! --") {
-                timeError.time = "Please enter a number between 1 and 10";
+                timeError.time = "Sorry, no tables available fot his day!";
             } else {
               delete timeError.time
             }
@@ -73,7 +73,8 @@ export default function BookingForm(props) {
         };
     
         validateForm();
-    }, [bookingData, errors, minDate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [bookingData, minDate]);
     
     
  
