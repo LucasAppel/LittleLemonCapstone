@@ -1,54 +1,73 @@
-import { Route, Routes } from 'react-router-dom'
-import HomePage from './components/Homepage'
-import BookingPage from './components/BookingPage'
-import React, { useState, useReducer, useEffect } from 'react'
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useReducer } from 'react';
+import HomePage from './components/Homepage';
+import BookingPage from './components/BookingPage';
+import ConfirmedBooking from './components/ConfirmedBooking';
 import { fetchAPI, submitAPI } from 'restaurantAPI';
 
-export default function Main(){
-
-    const today = new Date();
-    // State
-    const [date, setDate] = useState(new Date(today.getFullYear(), today.getMonth(), today.getDate()+1).toJSON().split('T')[0]);
-    const [time, setTime] = useState("");
-    const [guestCount, setGuestCount] = useState(0);
-    const [occasion, setOccasion] = useState("");
 
 
 
-
-    const initializeTimes = () => ([]);
-
+export default function Main() {
+    const navigate = useNavigate();
+    const [bookingData, setBookingData] = useState({
+        date: new Date().toJSON().split('T')[0],
+        time: "",
+        guestCount: 2,
+        occasion: ""
+    });
     const updateTimes = (state, action) => {
-        // action.date to be used?
-        switch(action.type){
+        switch (action.type) {
             case 'change_date':
-                state = action.times;
-                return state;
-            case 'remove_time_available':
-                return initializeTimes();
+                if (action.times.length > 0) {  
+                    setBookingData({...bookingData, time: action.times[0]});      
+                    return action.times;
+                } else {
+                    const bookedOut = "-- Sorry, Booked out! --";
+                    setBookingData({...bookingData, time: bookedOut});      
+                    return [bookedOut];
+                }
             default:
-                throw Error('Unknown action type!')
+                throw new Error('Unknown action type!');
         }
-    }
+    };
+    const [availableTimes, dispatch] = useReducer(updateTimes, []);
 
-    const [availableTimes, setAvailableTimes] = useReducer(updateTimes, initializeTimes());
+    useEffect(() => {
+        const initializeTimes = async () => {
+            try {
+                const times = await fetchAPI(bookingData.date);
+                // @ts-ignore
+                dispatch({ type: 'change_date', times });
+            } catch (error) {
+                if(bookingData.date) alert("Error fetching available times");
+            }
+        };
+
+        initializeTimes();
+    }, [bookingData]);
+
+
 
     const submitHandler = (e) => {
-        alert('Reservation received!');
         e.preventDefault();
-    }
-    useEffect(()=>{
-        fetchAPI(date)
-            // @ts-ignore
-            .then((resp) => {setAvailableTimes({type: 'change_date', times: resp})})
-    }, [date])
+        submitAPI(bookingData);
+        navigate("/bookingconfirmation");
+    };
 
-const bookingProps = {date, setDate, time, setTime, guestCount, setGuestCount, occasion, setOccasion, availableTimes, setAvailableTimes, submitHandler};
+    // Props für BookingForm
+    const bookingFormProps = {
+        bookingData,
+        setBookingData,
+        availableTimes,
+        submitHandler
+    };
 
     return (
-            <Routes>
-                <Route path="/" element={<HomePage/>}/>
-                <Route path="/booking" element={<BookingPage {...bookingProps} />}/>
-            </Routes>
-    )
+        <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/booking" element={<BookingPage {...bookingFormProps}/>} />
+            <Route path="/bookingconfirmation" element={<ConfirmedBooking />} />
+        </Routes>
+    );
 }

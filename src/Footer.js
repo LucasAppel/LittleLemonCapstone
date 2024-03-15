@@ -35,7 +35,7 @@ export default function Footer(){
     ];
 
     const generateLink = (link) => (
-        <li><Link key={link.Name} to={link.URL}>{link.Name}</Link></li>
+        <li key={"footer_" + link.Name}><Link to={link.URL}>{link.Name}</Link></li>
     )
 
     return (

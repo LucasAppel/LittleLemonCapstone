@@ -12,7 +12,7 @@ function Nav(){
             <img src={logo} alt="logo" className="nav1 segment" />
             <ul className="nav2">
                 {links.map((link) => (
-                    <li><Link key={link.Name} to={link.URL}>{link.Name}</Link></li>
+                    <li key={"header_" + link.Name}><Link to={link.URL}>{link.Name}</Link></li>
                 ))}
             </ul>
         </nav>

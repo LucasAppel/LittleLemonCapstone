@@ -34,7 +34,6 @@ function generateAvailableTimesForNextFourWeeks() {
 
 // Testen der Funktion
 const availableTimesByDate = generateAvailableTimesForNextFourWeeks();
-console.log(availableTimesByDate);
 
 
 

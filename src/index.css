@@ -20,7 +20,7 @@ h1 {
 }
 
 h1, h2 {
-  display: inline-block;
+  display: inline;
   font-size: 40pt;
   font-weight: medium;
   font-family: 'Markazi Text';
@@ -129,7 +129,6 @@ nav a {
   }
 }
 
-
 .segment {
   display: grid;
   text-align: left;
@@ -152,6 +151,12 @@ nav a {
   min-width: min-content;
   display: inline-block;
   cursor: pointer;
+}
+
+.btn:disabled {
+  background-color:rgb(237,239,238); /* Farbe für deaktivierten Button */
+  color: #666666; /* Textfarbe für deaktivierten Button */
+  cursor: not-allowed; /* Cursor-Stil für deaktivierten Button */
 }
 
 .ellipsis{
