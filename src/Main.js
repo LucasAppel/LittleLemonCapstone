@@ -10,6 +10,7 @@ import { fetchAPI, submitAPI } from 'restaurantAPI';
 
 export default function Main() {
     const navigate = useNavigate();
+    const [manualTrigger, setManualTrigger] = useState(false);
     const [bookingData, setBookingData] = useState({
         date: new Date().toJSON().split('T')[0],
         time: "",
@@ -45,13 +46,14 @@ export default function Main() {
         };
 
         initializeTimes();
-    }, [bookingData]);
+    }, [bookingData.date, manualTrigger]);
 
 
 
     const submitHandler = (e) => {
         e.preventDefault();
         submitAPI(bookingData);
+        setManualTrigger(!manualTrigger);
         navigate("/bookingconfirmation");
     };
 

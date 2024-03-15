@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useEffect } from "react";
 import "./BookingForm.css"; // Importieren Sie die CSS-Datei für die Stile
 
@@ -20,12 +21,13 @@ export default function BookingForm(props) {
  
     
     useEffect(() => {
+        
         // Funktion zur Validierung des Datums
         const validateDate = (date) => {
             const selectedDate = date;
             let dateErrors = { ...errors };
     
-            if (!selectedDate || selectedDate == "" || selectedDate < minDate) {
+            if (!selectedDate || selectedDate === "" || selectedDate < minDate) {
                 dateErrors.date = "Please select a future date";
             } else {
                 delete dateErrors.date // Fehler löschen, wenn kein Fehler mehr vorliegt
@@ -71,7 +73,7 @@ export default function BookingForm(props) {
         };
     
         validateForm();
-    }, [bookingData]);
+    }, [bookingData, errors, minDate]);
     
     
  
@@ -87,7 +89,7 @@ export default function BookingForm(props) {
                 }
             }} style={{ display: "grid", maxWidth: "250px", gap: "15px" }}>
                 <div className="input-container">
-                    <label htmlFor="res-date">Choose date</label>
+                    <label htmlFor="res-date">Choose date</label><br/>
                     <input type="date" aria-label="date" min={minDate} max={maxDate} required id="res-date" value={bookingData.date} onChange={(e) => setBookingData({ ...bookingData, date: e.target.value })} />
                     {errors.date && <div className="error-tooltip">{errors.date}</div>}
                 </div>
@@ -98,7 +100,7 @@ export default function BookingForm(props) {
                     </select>
                 </div>
                 <div className="input-container">
-                    <label htmlFor="guests">Number of guests</label>
+                    <label htmlFor="guests">Number of guests</label><br/>
                     <input type="number" aria-label="guests" placeholder="" min="1" max="10" id="guests" value={bookingData.guestCount.toString()} onChange={(e) => setBookingData({ ...bookingData, guestCount: parseInt(e.target.value) })} />
                     {errors.guestCount && <div className="error-tooltip">{errors.guestCount}</div>}
                 </div>
